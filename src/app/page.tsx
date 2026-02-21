@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import MarqueeStrip from "@/components/MarqueeStrip";
 import AboutSection from "@/components/AboutSection";
 import Gallery from "@/components/Gallery";
 import Services from "@/components/Services";
@@ -50,6 +51,7 @@ export default function Home() {
       >
         <Navbar />
         <HeroSection />
+        <MarqueeStrip />
         <AboutSection />
         <Gallery />
         <Services />

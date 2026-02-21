@@ -116,7 +116,6 @@ function FloatingArtStack() {
                             className="h-80 relative flex flex-col justify-end p-5"
                             style={{ background: card.gradient }}
                         >
-                            {/* Decorative circles */}
                             <div
                                 className="absolute top-6 right-6 w-20 h-20 rounded-full opacity-20"
                                 style={{ background: card.accent }}
@@ -126,63 +125,35 @@ function FloatingArtStack() {
                                 style={{ background: card.accent }}
                             />
 
-                            {/* Paint stroke decoration */}
                             <div className="absolute inset-0 flex items-center justify-center opacity-10">
                                 <svg width="200" height="200" viewBox="0 0 200 200">
-                                    <path
-                                        d="M20,100 Q60,40 100,100 T180,100"
-                                        stroke="white"
-                                        strokeWidth="3"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                    />
-                                    <path
-                                        d="M20,130 Q80,70 130,120 T180,80"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                        opacity="0.5"
-                                    />
+                                    <path d="M20,100 Q60,40 100,100 T180,100" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" />
+                                    <path d="M20,130 Q80,70 130,120 T180,80" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.5" />
                                 </svg>
                             </div>
 
-                            {/* Monogram */}
                             <div className="absolute top-5 left-5">
-                                <span
-                                    className="font-serif text-white/20 leading-none select-none"
-                                    style={{ fontSize: "5rem", fontWeight: 700 }}
-                                >
-                                    G
-                                </span>
+                                <span className="font-serif text-white/20 leading-none select-none" style={{ fontSize: "5rem", fontWeight: 700 }}>G</span>
                             </div>
 
-                            {/* Card content */}
                             <div className="relative z-10">
                                 <div
                                     className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase mb-3"
-                                    style={{
-                                        background: "rgba(255,255,255,0.15)",
-                                        color: card.accent,
-                                        backdropFilter: "blur(8px)",
-                                    }}
+                                    style={{ background: "rgba(255,255,255,0.15)", color: card.accent, backdropFilter: "blur(8px)" }}
                                 >
                                     <Sparkles size={9} />
                                     {card.sub}
                                 </div>
-                                <h3 className="font-serif text-white text-xl font-bold leading-tight">
-                                    {card.label}
-                                </h3>
+                                <h3 className="font-serif text-white text-xl font-bold leading-tight">{card.label}</h3>
                             </div>
 
-                            {/* Bottom bar */}
                             <div className="absolute bottom-0 inset-x-0 h-px bg-white/15" />
                         </div>
                     </motion.div>
                 ))}
             </motion.div>
 
-            {/* Floating "Open for commissions" badge */}
+            {/* Floating badge */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.8, y: 0 }}
                 animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
@@ -193,9 +164,7 @@ function FloatingArtStack() {
                 }}
                 className="absolute -bottom-4 -right-2 bg-white rounded-xl px-4 py-2.5 shadow-xl border border-slate-100"
             >
-                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold mb-0.5">
-                    Status
-                </p>
+                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold mb-0.5">Status</p>
                 <p className="text-xs font-semibold text-[#1E3A8A] flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
                     Open for commissions
@@ -209,30 +178,28 @@ export default function HeroSection() {
     return (
         <section
             id="hero"
-            className="relative min-h-screen flex items-center overflow-hidden bg-[#F8FAFC]"
+            className="relative min-h-screen flex items-center overflow-hidden"
+            style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #0F172A 100%)" }}
         >
             {/* Background decorations */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                aria-hidden
-            >
+            <div className="absolute inset-0 pointer-events-none" aria-hidden>
                 {/* Subtle grid */}
                 <div
                     className="absolute inset-0"
                     style={{
-                        backgroundImage:
-                            "linear-gradient(rgba(30,58,138,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(30,58,138,0.03) 1px, transparent 1px)",
+                        backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
                         backgroundSize: "80px 80px",
                     }}
                 />
-                {/* Gradient blobs — kept subtle with explicit rgba */}
-                <div
-                    className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(30,58,138,0.07) 0%, transparent 70%)" }}
-                />
+                {/* Pink glow bottom-left */}
                 <div
                     className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full"
                     style={{ background: "radial-gradient(circle, rgba(251,207,232,0.12) 0%, transparent 70%)" }}
+                />
+                {/* Bright blue glow top-right */}
+                <div
+                    className="absolute -top-32 right-0 w-[600px] h-[600px] rounded-full"
+                    style={{ background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)" }}
                 />
             </div>
 
@@ -244,16 +211,16 @@ export default function HeroSection() {
                         {...stagger(0.1)}
                         className="inline-flex items-center gap-2 mb-8"
                     >
-                        <span className="w-8 h-px bg-[#1E3A8A]" />
-                        <span className="text-[11px] font-semibold tracking-[0.22em] text-[#1E3A8A] uppercase">
+                        <span className="w-8 h-px bg-[#FBCFE8]" />
+                        <span className="text-[11px] font-semibold tracking-[0.22em] text-[#FBCFE8] uppercase">
                             Multi-disciplinary Artist
                         </span>
                     </motion.div>
 
-                    {/* Hero headline — staggered per word */}
+                    {/* Hero headline */}
                     <div className="mb-6 overflow-hidden">
                         <motion.h1
-                            className="font-serif leading-[1.08] text-[#0F172A]"
+                            className="font-serif leading-[1.08] text-white"
                             style={{ fontSize: "clamp(3rem, 6.5vw, 5.5rem)" }}
                         >
                             {["Transforming", "Every Surface", "into Art."].map((line, i) => (
@@ -261,15 +228,12 @@ export default function HeroSection() {
                                     key={line}
                                     initial={{ opacity: 0, y: 40 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{
-                                        duration: 0.75,
-                                        delay: 0.2 + i * 0.12,
-                                        ease: [0.22, 1, 0.36, 1],
-                                    }}
+                                    transition={{ duration: 0.75, delay: 0.2 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                                     className="block"
                                     style={{
                                         fontStyle: i === 1 ? "italic" : "normal",
                                         fontWeight: i === 1 ? 400 : 700,
+                                        color: i === 1 ? "#FBCFE8" : "white",
                                     }}
                                 >
                                     {line}
@@ -281,12 +245,12 @@ export default function HeroSection() {
                     {/* Tagline */}
                     <motion.p
                         {...stagger(0.55)}
-                        className="text-slate-500 text-base leading-relaxed max-w-sm mb-10"
+                        className="text-white/50 text-base leading-relaxed max-w-sm mb-10"
                     >
                         Filipino fine artist working across{" "}
                         {WORDS.map((w, i) => (
                             <span key={w}>
-                                <span className="text-[#1E3A8A] font-medium">{w}</span>
+                                <span className="text-[#FBCFE8] font-medium">{w}</span>
                                 {i < WORDS.length - 1 ? " · " : ""}
                             </span>
                         ))}
@@ -298,46 +262,36 @@ export default function HeroSection() {
                         {...stagger(0.65)}
                         className="flex flex-wrap gap-2 mb-10"
                     >
-                        {["Coffin Art", "Wall Murals", "Canvas", "Vector Art", "Graphic Branding"].map(
-                            (m) => (
-                                <span
-                                    key={m}
-                                    className="px-3 py-1.5 bg-white border border-[#BFDBFE] text-[#1E3A8A] text-[11px] font-semibold tracking-wide uppercase rounded-full shadow-sm"
-                                >
-                                    {m}
-                                </span>
-                            )
-                        )}
+                        {["Coffin Art", "Wall Murals", "Canvas", "Vector Art", "Graphic Branding"].map((m) => (
+                            <span
+                                key={m}
+                                className="px-3 py-1.5 text-[11px] font-semibold tracking-wide uppercase rounded-full"
+                                style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}
+                            >
+                                {m}
+                            </span>
+                        ))}
                     </motion.div>
 
                     {/* CTAs */}
                     <motion.div {...stagger(0.75)} className="flex items-center gap-4">
                         <motion.button
-                            onClick={() =>
-                                document
-                                    .querySelector("#gallery")
-                                    ?.scrollIntoView({ behavior: "smooth" })
-                            }
+                            onClick={() => document.querySelector("#gallery")?.scrollIntoView({ behavior: "smooth" })}
                             whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95, rotate: "1deg" }}
-                            className="px-7 py-3.5 bg-[#1E3A8A] text-white text-[13px] font-bold tracking-wide uppercase rounded-full shadow-lg hover:shadow-xl hover:bg-blue-800 transition-all duration-200"
+                            whileTap={{ scale: 0.95 }}
+                            className="px-7 py-3.5 text-[13px] font-bold tracking-wide uppercase rounded-full shadow-lg transition-all duration-200"
+                            style={{ background: "#FBCFE8", color: "#1E3A8A" }}
                         >
                             View My Work
                         </motion.button>
                         <motion.button
-                            onClick={() =>
-                                document
-                                    .querySelector("#contact")
-                                    ?.scrollIntoView({ behavior: "smooth" })
-                            }
+                            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                             whileHover={{ scale: 1.05, x: 4 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 text-[13px] font-semibold text-[#1E3A8A] uppercase tracking-wide group"
+                            className="flex items-center gap-2 text-[13px] font-semibold text-white/70 uppercase tracking-wide group hover:text-white transition-colors"
                         >
                             Commission a Piece
-                            <span className="group-hover:translate-x-1 transition-transform">
-                                →
-                            </span>
+                            <span className="group-hover:translate-x-1 transition-transform">→</span>
                         </motion.button>
                     </motion.div>
                 </div>
@@ -358,16 +312,10 @@ export default function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.6 }}
-                onClick={() =>
-                    document
-                        .querySelector("#about")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-[#1E3A8A] transition-colors"
+                onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 hover:text-white/80 transition-colors"
             >
-                <span className="text-[10px] uppercase tracking-[0.2em] font-semibold">
-                    Scroll
-                </span>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-semibold">Scroll</span>
                 <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
                     <ArrowDown size={14} />
                 </motion.div>

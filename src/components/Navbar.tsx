@@ -38,22 +38,23 @@ export default function Navbar() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
-                        ? "bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-sm"
-                        : "bg-transparent border-b border-transparent"
+                        ? "bg-white/90 backdrop-blur-xl border-b border-slate-200/60 shadow-sm"
+                        : "bg-transparent border-b border-white/10"
                     }`}
             >
                 <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-                    {/* Logo / Wordmark */}
+                    {/* Logo */}
                     <motion.button
                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="font-serif text-lg font-semibold text-[#1E3A8A] tracking-wide"
+                        className={`font-serif text-lg font-semibold tracking-wide transition-colors duration-500 ${scrolled ? "text-[#1E3A8A]" : "text-white"
+                            }`}
                     >
                         Gea V. Pernites
                     </motion.button>
 
-                    {/* Desktop nav — centered */}
+                    {/* Desktop nav */}
                     <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
                         {links.map((l) => (
                             <motion.button
@@ -61,16 +62,20 @@ export default function Navbar() {
                                 onClick={() => goto(l.href)}
                                 whileHover={{ y: -1 }}
                                 whileTap={{ y: 1 }}
-                                className={`relative px-4 py-2 text-[13px] font-medium tracking-wider uppercase transition-colors duration-200 rounded-md ${activeLink === l.href
-                                        ? "text-[#1E3A8A]"
-                                        : "text-slate-500 hover:text-[#1E3A8A]"
+                                className={`relative px-4 py-2 text-[13px] font-medium tracking-wider uppercase transition-colors duration-200 rounded-md ${scrolled
+                                        ? activeLink === l.href
+                                            ? "text-[#1E3A8A]"
+                                            : "text-slate-500 hover:text-[#1E3A8A]"
+                                        : activeLink === l.href
+                                            ? "text-white"
+                                            : "text-white/60 hover:text-white"
                                     }`}
                             >
                                 {l.label}
                                 {activeLink === l.href && (
                                     <motion.span
                                         layoutId="nav-dot"
-                                        className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#1E3A8A] rounded-full"
+                                        className={`absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full ${scrolled ? "bg-[#1E3A8A]" : "bg-[#FBCFE8]"}`}
                                     />
                                 )}
                             </motion.button>
@@ -82,8 +87,11 @@ export default function Navbar() {
                         <motion.button
                             onClick={() => goto("#contact")}
                             whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95, rotate: "1deg" }}
-                            className="px-5 py-2 bg-[#1E3A8A] text-white text-[13px] font-semibold tracking-wide uppercase rounded-full shadow-md hover:shadow-lg hover:bg-blue-800 transition-all duration-200"
+                            whileTap={{ scale: 0.95 }}
+                            className={`px-5 py-2 text-[13px] font-semibold tracking-wide uppercase rounded-full shadow-md transition-all duration-300 ${scrolled
+                                    ? "bg-[#1E3A8A] text-white hover:bg-blue-800"
+                                    : "bg-[#FBCFE8] text-[#1E3A8A] hover:bg-white"
+                                }`}
                         >
                             Get in Touch
                         </motion.button>
@@ -92,7 +100,7 @@ export default function Navbar() {
                     {/* Hamburger */}
                     <button
                         onClick={() => setMenuOpen((v) => !v)}
-                        className="md:hidden text-[#1E3A8A] p-1"
+                        className={`md:hidden p-1 transition-colors ${scrolled ? "text-[#1E3A8A]" : "text-white"}`}
                         aria-label="Toggle menu"
                     >
                         {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -109,7 +117,7 @@ export default function Navbar() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-40 bg-[#0F172A]/40 backdrop-blur-sm md:hidden"
+                            className="fixed inset-0 z-40 bg-[#0F172A]/60 backdrop-blur-sm md:hidden"
                             onClick={() => setMenuOpen(false)}
                         />
                         <motion.div
@@ -118,12 +126,10 @@ export default function Navbar() {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ type: "spring", damping: 28, stiffness: 300 }}
-                            className="fixed right-0 top-0 bottom-0 z-50 bg-white w-72 flex flex-col pt-20 pb-8 px-7 md:hidden shadow-2xl"
+                            className="fixed right-0 top-0 bottom-0 z-50 bg-[#0F172A] w-72 flex flex-col pt-20 pb-8 px-7 md:hidden shadow-2xl"
                         >
                             <div className="mb-6">
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-medium mb-4">
-                                    Navigate
-                                </p>
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 font-medium mb-4">Navigate</p>
                                 {links.map((l, i) => (
                                     <motion.button
                                         key={l.label}
@@ -131,7 +137,7 @@ export default function Navbar() {
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.06 }}
                                         onClick={() => goto(l.href)}
-                                        className="flex items-center w-full py-3 text-lg font-medium text-slate-700 border-b border-slate-100 last:border-0 hover:text-[#1E3A8A] transition-colors"
+                                        className="flex items-center w-full py-3 text-lg font-medium text-white/60 border-b border-white/10 last:border-0 hover:text-white transition-colors"
                                     >
                                         {l.label}
                                     </motion.button>
@@ -142,7 +148,7 @@ export default function Navbar() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.28 }}
                                 onClick={() => goto("#contact")}
-                                className="mt-auto py-3.5 text-center text-sm font-semibold text-white bg-[#1E3A8A] rounded-full hover:bg-blue-800 transition-colors uppercase tracking-wide"
+                                className="mt-auto py-3.5 text-center text-sm font-semibold text-[#1E3A8A] bg-[#FBCFE8] rounded-full hover:bg-white transition-colors uppercase tracking-wide"
                             >
                                 Get in Touch
                             </motion.button>
